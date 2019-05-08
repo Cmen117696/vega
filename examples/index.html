@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="view" style="width: 1000px; height: 800px;"></div>
+<script src="vega.js"></script>
+<script>
+
+  fetch(`json/${location.search.substr(1)}.json`)
+    .then(res => res.json())
+    .then(option => {
+
+      const view = new vega.View(vega.parse(option), {
+        renderer:  'canvas',  // renderer (canvas or svg)
+        container: '#view',   // parent DOM container
+        hover:     true       // enable hover processing
+      });
+
+      view.runAsync();
+
+    });
+
+
+</script>
+</body>
+</html>

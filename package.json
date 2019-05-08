@@ -13,11 +13,14 @@
     "release": "yarn license && lerna publish from-package",
     "serve": "http-server packages/vega/ -c-1 -p8080 -o",
     "test": "lerna run test",
-    "postinstall": "yarn data"
+    "postinstall": "yarn data",
+    "watch": "webpack-dev-server"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
     "@types/node": "^11.11.6",
     "ajv": "^6.10.0",
+    "babel-loader": "^8.0.5",
     "canvas": "^2.4.1",
     "dtslint": "0.5.5",
     "eslint": "^5.15.3",
@@ -32,7 +35,10 @@
     "tape": "^4.10.1",
     "terser": "^3.17.0",
     "typescript": "^3.3.3",
-    "vega-datasets": "^1.23.0"
+    "vega-datasets": "^1.23.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "workspaces": [
     "packages/*"
