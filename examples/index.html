@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style>
+    body{position: relative;}
+    #sidebar{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    #sidebar a{
+      display: block;
+      padding: 4px 8px;
+      text-decoration: none;
+      color: #b7b7b7;
+    }
+    #sidebar a:hover{
+      color: #369;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<div id="view" style="width: 1000px; height: 800px;"></div>
+<div id="view"></div>
+<div id="sidebar"></div>
 <script src="vega.js"></script>
 <script>
 
@@ -23,6 +42,16 @@
 
     });
 
+  fetch('http://localhost/Visualization/vega/examples/server.php', {method: 'get'})
+    .then(res => res.json())
+    .then(data => {
+
+      document.getElementById('sidebar').innerHTML = data.reduce((str, datum) => {
+        datum = datum.replace('.json', '');
+        return str += `<a href="?${datum}" target="_self">${datum}</a>`;
+      }, '');
+
+    });
 
 </script>
 </body>
