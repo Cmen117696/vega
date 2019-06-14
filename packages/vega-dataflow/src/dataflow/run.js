@@ -61,6 +61,8 @@ export async function evaluate(encode, prerun, postrun) {
   df._touched.forEach(function(op) { df._enqueue(op, true); });
   df._touched = UniqueList(id);
 
+  let pulse;
+
   try {
     while (df._heap.size() > 0) {
       // dequeue operator with highest priority
@@ -69,8 +71,9 @@ export async function evaluate(encode, prerun, postrun) {
       // re-queue if rank changed
       if (op.rank !== op.qrank) { df._enqueue(op, true); continue; }
 
+      pulse = df._getPulse(op, encode);
       // otherwise, evaluate the operator
-      next = op.run(df._getPulse(op, encode));
+      next = op.run(pulse);
 
       // await if operator returned a promise
       if (next.then) {
