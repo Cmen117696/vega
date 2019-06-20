@@ -19,7 +19,8 @@ module.exports = (env, argv) => {
 
     // 入口文件: 多入口的话可以继续追加
     entry: {
-      vega: "./packages/vega/index.js"      // 工程主js
+      vega: "./packages/vega/index.js",      // 工程主js
+      vanchart: './packages/vega-vanchart/index.js'
     },
 
     resolve: {
@@ -32,7 +33,7 @@ module.exports = (env, argv) => {
     output: {
       filename: "[name].js",  // 使用entry的key作为输出文件的文件名，上面的entry对应输出main.js
       path: path.resolve(__dirname, "dist"),  // 输出的文件夹
-      library: 'vega',
+      library: '[name]',
       libraryTarget: 'umd',
       umdNamedDefine: true
     },

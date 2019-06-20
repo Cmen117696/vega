@@ -13,13 +13,9 @@ import * as wordcloud from 'vega-wordcloud';
 import * as xf from 'vega-crossfilter';
 extend(transforms, tx, vtx, encode, geo, force, tree, voronoi, wordcloud, xf);
 
-
-console.log(transforms);
 // -- Exports -----
 
-export {
-  version
-} from './package.json';
+export const version = "0.1.0";
 
 export * from 'vega-statistics';
 
@@ -62,7 +58,7 @@ export {
 
 export {
   View
-} from 'vega-view';
+} from './src/view';
 
 export {
   expressionFunction,
@@ -72,9 +68,9 @@ export {
 
 export {
   parse
-} from 'vega-parser';
+} from './src/parser';
 
 export {
   parse as runtime,
   context as runtimeContext
-} from 'vega-runtime';
+} from './src/runtime';

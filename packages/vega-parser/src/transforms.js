@@ -35,3 +35,4 @@ export var Sieve = transform('sieve');
 export var SortItems = transform('sortitems');
 export var ViewLayout = transform('viewlayout');
 export var Values = transform('values');
+export var AxisSize = transform('axissize');

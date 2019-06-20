@@ -4,7 +4,7 @@ import {
   fieldRef, keyRef, tupleidRef, isSignal, operator, ref
 } from './util';
 import parseExpression from './parsers/expression';
-import {Compare, Expression, Field, Key, Projection, Proxy, Scale, Sieve} from './transforms';
+import {Compare, Expression, Field, Key, Projection, Proxy, Scale, Sieve, AxisSize} from './transforms';
 import {array, error, extend, isArray, isString, isObject, peek, stringValue} from 'vega-util';
 
 export default function Scope(config) {
@@ -17,6 +17,8 @@ export default function Scope(config) {
   this.scales = {};
   this.events = {};
   this.data = {};
+
+  this.compute = {};
 
   this.streams = [];
   this.updates = [];
@@ -386,6 +388,10 @@ prototype.addScaleProj = function(name, transform) {
 
 prototype.addScale = function(name, params) {
   this.addScaleProj(name, Scale(params));
+};
+
+prototype.addCompute = function(name, transform) {
+  this.compute[name] = this.add(transform);
 };
 
 prototype.addProjection = function(name, params) {
